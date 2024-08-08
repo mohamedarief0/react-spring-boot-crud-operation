@@ -60,7 +60,7 @@ const App = () => {
     }
   };
 
-  // uncommand this untill it all data is getting using GET method
+  // uncommand this untill it all data is getting using GET method from backend
   const fetchItems = async () => {
     try {
       // const response = await axios.get("/api/items");
