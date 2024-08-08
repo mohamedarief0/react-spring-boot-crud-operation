@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
+// import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
 const App = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -30,20 +32,6 @@ const App = () => {
       role: "Manager",
       gender: "Female",
     },
-    {
-      id: 4,
-      name: "Bob Brown",
-      email: "bob.brown@example.com",
-      role: "Developer",
-      gender: "Male",
-    },
-    {
-      id: 5,
-      name: "Charlie Davis",
-      email: "charlie.davis@example.com",
-      role: "Designer",
-      gender: "Male",
-    },
   ]);
   const [editing, setEditing] = useState(null);
 
@@ -71,7 +59,7 @@ const App = () => {
       console.error("Error:", error);
     }
   };
-  
+
   // uncommand this untill it all data is getting using GET method
   const fetchItems = async () => {
     try {
@@ -100,49 +88,60 @@ const App = () => {
     <div className="container">
       <h1>Simple form</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          name:
-          <input
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          email:
-          <input
-            type="text"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          role:
-          <input
-            type="text"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          gender:
-          <input
-            type="text"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">{editing ? "Update" : "Create"}</button>
+        <div class="mb-3">
+          <label className="form-label">
+            name:
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              className="form-control"
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div class="mb-3">
+          <label className="form-label">
+            email:
+            <input
+              type="text"
+              name="email"
+              className="form-control"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div class="mb-3">
+          <label className="form-label">
+            role:
+            <input
+              type="text"
+              name="role"
+              value={formData.role}
+              className="form-control"
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <div class="mb-3">
+          <label className="form-label">
+            gender:
+            <input
+              type="text"
+              name="gender"
+              className="form-control"
+              value={formData.gender}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
+        <button className="btn btn-dark w-50" type="submit">
+          {editing ? "Update" : "Create"}
+        </button>
       </form>
 
-      <table border={ 2} style={{
-        borderCollapse: "collapse",
-        marginTop:"20px"
-      }}> 
+      <table className="container table table-striped mt-5">
         <thead>
           <tr>
             <th>Name</th>
@@ -160,8 +159,18 @@ const App = () => {
               <td>{item.role}</td>
               <td>{item.gender}</td>
               <td>
-                <button onClick={() => handleEdit(item)}>Edit</button>
-                <button onClick={() => handleDelete(item.id)}>Delete</button>
+                <button
+                  className="btn btn-dark"
+                  onClick={() => handleEdit(item)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn btn-dark ms-3"
+                  onClick={() => handleDelete(item.id)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}
